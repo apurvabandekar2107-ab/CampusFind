@@ -76,10 +76,10 @@ app.use(express.static(path.join(__dirname, "public")));
 console.log("EXPRESS SERVER SETUP COMPLETE");
 
 // ================================
-// MYSQL DATABASE CONNECTION
+// MYSQL / TiDB DATABASE CONNECTION
 // ================================
 
-const db = mysql.createConnection({
+const db = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
@@ -87,10 +87,14 @@ const db = mysql.createConnection({
     port: process.env.DB_PORT || 4000,
     ssl: {
         minVersion: "TLSv1.2"
-    }
+    },
+    waitForConnections: true,
+    connectionLimit: 5,
+    queueLimit: 0
 });
 
-db.connect((err) => {
+// Test database connection
+db.query("SELECT 1", (err) => {
     if (err) {
         console.error("DATABASE CONNECTION FAILED");
         console.error("Code:", err.code);
@@ -100,24 +104,6 @@ db.connect((err) => {
     }
 
     console.log("MYSQL/TIDB CONNECTED SUCCESSFULLY");
-});
-
-db.query("DESCRIBE lost_items", (err, result) => {
-    if (err) {
-        console.log("LOST ITEMS ERROR:", err.message);
-        return;
-    }
-
-    console.table(result);
-});
-
-db.query("DESCRIBE found_items", (err, result) => {
-    if (err) {
-        console.log("FOUND ITEMS ERROR:", err.message);
-        return;
-    }
-
-    console.table(result);
 });
 
 // ================================
