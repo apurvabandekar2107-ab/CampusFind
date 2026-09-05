@@ -4,6 +4,17 @@ const fs = require("fs");
 const mysql = require("mysql2");
 const session = require("express-session");
 const multer = require("multer");
+const dns = require("dns");
+
+dns.lookup(process.env.DB_HOST, (err, address, family) => {
+    if (err) {
+        console.error("DB DNS LOOKUP FAILED:", err.message);
+        return;
+    }
+
+    console.log("DB HOST RESOLVED TO:", address);
+    console.log("IP FAMILY:", family);
+});
 
 const app = express();
 const PORT = process.env.PORT || 3000;
