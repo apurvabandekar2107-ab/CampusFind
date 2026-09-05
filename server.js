@@ -92,11 +92,14 @@ const db = mysql.createConnection({
 
 db.connect((err) => {
     if (err) {
-        console.log("MySQL connection failed:", err.message);
+        console.error("DATABASE CONNECTION FAILED");
+        console.error("Code:", err.code);
+        console.error("Message:", err.message);
+        console.error("SQL State:", err.sqlState);
         return;
     }
 
-    console.log("MySQL connected successfully!");
+    console.log("MYSQL/TIDB CONNECTED SUCCESSFULLY");
 });
 
 db.query("DESCRIBE lost_items", (err, result) => {
