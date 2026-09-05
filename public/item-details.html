@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Item Details | CampusFind</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        .details-page {
+            min-height: 100vh;
+            background: #f5f8ff;
+            padding: 50px 20px;
+        }
+
+        .details-container {
+            width: 90%;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 25px;
+            color: #4f46e5;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .details-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+
+            border: 1px solid #e8eef8;
+
+            box-shadow:
+                0 12px 35px
+                rgba(25, 70, 140, 0.10);
+        }
+
+        .details-image {
+            width: 100%;
+            max-height: 450px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            display: block;
+            background: #f1f5f9;
+        }
+
+        .details-placeholder {
+            width: 100%;
+            height: 300px;
+            border-radius: 16px;
+            background: #eef2ff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 80px;
+            margin-bottom: 25px;
+        }
+
+        .details-status {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .details-status.lost {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .details-status.found {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .details-card h1 {
+            color: #172033;
+            margin-bottom: 25px;
+        }
+
+        .detail-row {
+            padding: 15px 0;
+            border-bottom: 1px solid #eef2f7;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: #667085;
+            margin-bottom: 5px;
+        }
+
+        .detail-value {
+            color: #172033;
+            line-height: 1.6;
+        }
+
+        .loading,
+        .error-message {
+            background: white;
+            padding: 50px;
+            border-radius: 18px;
+            text-align: center;
+            color: #667085;
+        }
+
+        .error-message {
+            color: #dc2626;
+        }
+
+        @media (max-width: 600px) {
+
+            .details-card {
+                padding: 20px;
+            }
+
+            .details-placeholder {
+                height: 220px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            Campus<span>Find</span>
+        </div>
+
+        <nav class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="items.html">
+                Browse Items
+            </a>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main class="details-page">
+
+        <div class="details-container">
+
+            <a href="items.html" class="back-link">
+                ← Back to Browse Items
+            </a>
+
+            <div id="detailsContainer">
+
+                <div class="loading">
+                    Loading item details...
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+
+        const container =
+            document.getElementById("detailsContainer");
+
+
+        const params =
+            new URLSearchParams(window.location.search);
+
+
+        const type =
+            params.get("type");
+
+        const id =
+            params.get("id");
+
+
+        if (!type || !id) {
+
+            container.innerHTML = `
+                <div class="error-message">
+                    Invalid item details link.
+                </div>
+            `;
+
+        } else {
+
+            loadItem();
+
+        }
+
+
+        async function loadItem() {
+
+            try {
+
+                const response =
+                    await fetch(
+                        `/api/items/${type}/${id}`
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Item could not be found."
+                    );
+
+                }
+
+
+                const item =
+                    await response.json();
+
+
+                displayItem(item);
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                container.innerHTML = `
+                    <div class="error-message">
+                        ${error.message}
+                    </div>
+                `;
+
+            }
+
+        }
+
+
+        function displayItem(item) {
+
+    const status =
+        item.report_type === "lost"
+            ? "LOST"
+            : "FOUND";
+
+    const statusClass =
+        item.report_type === "lost"
+            ? "lost"
+            : "found";
+
+    const rawDate =
+        item.report_type === "lost"
+            ? item.lost_date
+            : item.found_date;
+
+    const date =
+        rawDate
+            ? new Date(rawDate).toLocaleDateString(
+                "en-GB",
+                {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric"
+                }
+            )
+            : "Not specified";
+
+
+    let imageHTML = "";
+
+
+    if (item.image) {
+
+        let imagePath = item.image;
+
+        if (!imagePath.startsWith("/")) {
+            imagePath = "/uploads/" + imagePath;
+        }
+
+        // Safely encode spaces and special characters
+        imagePath = encodeURI(imagePath);
+
+        imageHTML = `
+            <img
+                src="${imagePath}"
+                alt="Item image"
+                class="details-image"
+                onerror="this.style.display='none';"
+            >
+        `;
+
+    } else {
+
+        imageHTML = `
+            <div class="details-placeholder">
+                ${status === "LOST" ? "🔍" : "🎒"}
+            </div>
+        `;
+
+    }
+
+
+    container.innerHTML = `
+
+        <div class="details-card">
+
+            ${imageHTML}
+
+            <span class="details-status ${statusClass}">
+                ${status}
+            </span>
+
+            <h1>
+                ${item.item_name || "Unnamed item"}
+            </h1>
+
+            <div class="detail-row">
+
+                <span class="detail-label">
+                    Description
+                </span>
+
+                <div class="detail-value">
+                    ${item.description || "No description provided."}
+                </div>
+
+            </div>
+
+            <div class="detail-row">
+
+                <span class="detail-label">
+                    Location
+                </span>
+
+                <div class="detail-value">
+                    ${item.location || "Not specified"}
+                </div>
+
+            </div>
+
+            <div class="detail-row">
+
+                <span class="detail-label">
+                    Date
+                </span>
+
+                <div class="detail-value">
+                    ${date}
+                </div>
+
+            </div>
+
+            <div class="detail-row">
+
+                <span class="detail-label">
+                    Contact
+                </span>
+
+                <div class="detail-value">
+                    ${item.contact || "Not specified"}
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+}
+    </script>
+
+</body>
+
+</html>

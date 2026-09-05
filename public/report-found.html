@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Report Found Item | CampusFind</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="auth-page">
+
+    <header class="navbar">
+
+        <div class="logo">
+            Campus<span>Find</span>
+        </div>
+
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="items.html">Browse Items</a>
+            <a href="dashboard.html">Dashboard</a>
+        </nav>
+
+    </header>
+
+
+    <main class="auth-container">
+
+        <div class="auth-card">
+
+            <div class="auth-icon">
+                🎒
+            </div>
+
+            <h1>Report Found Item</h1>
+
+            <p class="auth-subtitle">
+                Help someone find their lost belongings.
+            </p>
+
+
+            <form action="/report-found" method="POST" enctype="multipart/form-data">
+
+                <div class="form-group">
+
+                    <label for="item_name">
+                        Item Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="item_name"
+                        name="item_name"
+                        placeholder="Example: Black Wallet"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="description">
+                        Description
+                    </label>
+
+                    <input
+                        type="text"
+                        id="description"
+                        name="description"
+                        placeholder="Describe the item"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="location">
+                        Found Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="location"
+                        name="location"
+                        placeholder="Example: College Canteen"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="found_date">
+                        Date Found
+                    </label>
+
+                    <input
+                        type="date"
+                        id="found_date"
+                        name="found_date"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="contact">
+                        Contact Information
+                    </label>
+
+                    <input
+                        type="text"
+                        id="contact"
+                        name="contact"
+                        placeholder="Email or phone number"
+                        required
+                    >
+
+                </div>
+                <div class="form-group">
+
+    <label for="image">
+        Item Image
+    </label>
+
+    <input
+    type="file"
+    id="image"
+    name="image"
+    accept="image/*"
+    capture="environment"
+>
+
+    <small>
+        Upload a clear photo of the found item.
+        Maximum size: 5 MB.
+    </small>
+
+</div>
+
+
+                <button
+                    type="submit"
+                    class="auth-button"
+                >
+                    Submit Found Item
+                </button>
+
+            </form>
+
+
+            <p class="auth-footer">
+
+                <a href="dashboard.html">
+                    ← Back to Dashboard
+                </a>
+
+            </p>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

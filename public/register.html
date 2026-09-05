@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | CampusFind</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="auth-page">
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            Campus<span>Find</span>
+        </div>
+
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="items.html">Browse Items</a>
+            <a href="index.html#how-it-works">How It Works</a>
+            <a href="login.html">Login</a>
+        </nav>
+    </header>
+
+
+    <!-- Registration Section -->
+    <main class="auth-container">
+
+        <div class="auth-card">
+
+            <div class="auth-icon">👤</div>
+
+            <h1>Create Your Account</h1>
+
+            <p class="auth-subtitle">
+                Join CampusFind and help reconnect lost belongings
+                with their owners.
+            </p>
+
+           <form action="/register" method="POST">
+
+    <div class="form-group">
+        <label for="name">Full Name</label>
+        <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter your full name"
+            required
+        >
+    </div>
+
+    <div class="form-group">
+        <label for="email">College Email</label>
+        <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your college email"
+            required
+        >
+    </div>
+
+    <div class="form-group">
+        <label for="accessPassword">College Access Password</label>
+        <input
+            type="password"
+            id="accessPassword"
+            name="accessPassword"
+            placeholder="Enter college access password"
+            required
+        >
+    </div>
+
+    <button type="submit" class="auth-button">
+        Create Account
+    </button>
+
+</form>
+            <p class="auth-footer">
+                Already have an account?
+                <a href="login.html">Login here</a>
+            </p>
+
+        </div>
+
+    </main>
+
+</body>
+</html>

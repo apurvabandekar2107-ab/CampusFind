@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Account | CampusFind</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            Campus<span>Find</span>
+        </div>
+
+
+        <nav class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="items.html">
+                Browse Items
+            </a>
+
+            <a href="index.html#how-it-works">
+                How It Works
+            </a>
+
+            <a href="my-reports.html">
+                My Reports
+            </a>
+
+            <div class="account-container">
+
+                <button class="account-icon"
+                        type="button"
+                        title="My Account"
+                        aria-label="My Account">
+
+                    <i class="fa-solid fa-user"></i>
+
+                </button>
+
+
+                <div class="account-menu" id="accountMenu">
+
+                    <a href="my-account.html">
+                        <i class="fa-solid fa-user"></i>
+                        My Account
+                    </a>
+
+                    <a href="my-reports.html">
+                        <i class="fa-solid fa-clipboard-list"></i>
+                        My Reports
+                    </a>
+
+                    <button id="logoutBtn">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        Logout
+                    </button>
+
+                </div>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- ================= ACCOUNT PAGE ================= -->
+
+    <main class="account-page">
+
+
+        <div class="account-header">
+
+            <div class="account-avatar">
+
+                <i class="fa-solid fa-user"></i>
+
+            </div>
+
+
+            <div>
+
+                <p class="section-label">
+                    ACCOUNT
+                </p>
+
+                <h1>
+                    My Account
+                </h1>
+
+                <p>
+                    Manage your CampusFind account.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= USER INFORMATION ================= -->
+
+        <section class="account-card">
+
+            <div class="card-title">
+
+                <div class="card-icon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <div>
+
+                    <h2>
+                        Personal Information
+                    </h2>
+
+                    <p>
+                        Your registered CampusFind details
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="account-details">
+
+                <div class="detail-item">
+
+                    <span>
+                        Full Name
+                    </span>
+
+                    <strong id="userName">
+                        Loading...
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Email Address
+                    </span>
+
+                    <strong id="userEmail">
+                        Loading...
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= QUICK ACTIONS ================= -->
+
+        <section class="account-card">
+
+            <div class="card-title">
+
+                <div class="card-icon">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+
+                <div>
+
+                    <h2>
+                        Quick Actions
+                    </h2>
+
+                    <p>
+                        Quickly access your CampusFind activity
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="account-actions">
+
+
+                <a href="my-reports.html" class="account-action">
+
+                    <div class="action-icon">
+                        <i class="fa-solid fa-clipboard-list"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            My Reports
+                        </strong>
+
+                        <span>
+                            View your lost and found reports
+                        </span>
+
+                    </div>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </a>
+
+
+                <a href="items.html" class="account-action">
+
+                    <div class="action-icon">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Browse Items
+                        </strong>
+
+                        <span>
+                            Search lost and found items
+                        </span>
+
+                    </div>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </a>
+
+
+                <a href="report-lost.html" class="account-action">
+
+                    <div class="action-icon">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Report Lost Item
+                        </strong>
+
+                        <span>
+                            Report something you lost
+                        </span>
+
+                    </div>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </a>
+
+
+                <a href="report-found.html" class="account-action">
+
+                    <div class="action-icon">
+                        <i class="fa-solid fa-hand-holding-heart"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Report Found Item
+                        </strong>
+
+                        <span>
+                            Help someone recover their item
+                        </span>
+
+                    </div>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= LOGOUT ================= -->
+
+        <section class="logout-card">
+
+            <div>
+
+                <h3>
+                    Sign out of CampusFind
+                </h3>
+
+                <p>
+                    You can sign back in anytime.
+                </p>
+
+            </div>
+
+
+            <button id="pageLogoutBtn">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Logout
+
+            </button>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-logo">
+            Campus<span>Find</span>
+        </div>
+
+        <p>
+            The Lost & Found Tracker for your campus.
+        </p>
+
+        <div class="footer-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="items.html">
+                Browse Items
+            </a>
+
+            <a href="my-reports.html">
+                My Reports
+            </a>
+
+        </div>
+
+        <div class="copyright">
+
+            © 2026 CampusFind. All rights reserved.
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- ================= ACCOUNT SCRIPT ================= -->
+
+    <script src="js/account.js"></script>
+
+
+    <!-- ================= LOAD ACCOUNT ================= -->
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", async () => {
+
+            try {
+
+                const response = await fetch("/api/account");
+
+                if (!response.ok) {
+
+                    window.location.href = "login.html";
+
+                    return;
+
+                }
+
+                const user = await response.json();
+
+                document.getElementById("userName").textContent = user.name;
+
+                document.getElementById("userEmail").textContent = user.email;
+
+            }
+
+            catch (error) {
+
+                console.error("Account loading error:", error);
+
+                window.location.href = "login.html";
+
+            }
+
+        });
+
+
+        // Page logout button
+
+        document.getElementById("pageLogoutBtn").addEventListener("click", async () => {
+
+            try {
+
+                const response = await fetch("/logout");
+
+                if (response.ok) {
+
+                    window.location.href = "login.html";
+
+                } else {
+
+                    alert("Logout failed");
+
+                }
+
+            }
+
+            catch (error) {
+
+                console.error("Logout error:", error);
+
+                alert("Logout failed");
+
+            }
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusFind | Lost & Found</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            Campus<span>Find</span>
+        </div>
+
+        <nav class="nav-links">
+
+            <a href="index.html" class="active">Home</a>
+
+            <a href="items.html">Browse Items</a>
+
+            <a href="#how-it-works">How It Works</a>
+
+           <a href="login.html">Login</a>
+
+<div class="account-container">
+
+    <button class="account-icon"
+            type="button"
+            title="My Account"
+            aria-label="My Account"
+            style="display: none;">
+
+        <i class="fa-solid fa-user"></i>
+
+    </button>
+
+    <div class="account-menu" id="accountMenu">
+
+        <a href="my-account.html">
+            <i class="fa-solid fa-user"></i>
+            My Account
+        </a>
+
+        <a href="my-reports.html">
+            <i class="fa-solid fa-clipboard-list"></i>
+            My Reports
+        </a>
+
+        <button id="logoutBtn">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </button>
+
+    </div>
+
+</div>
+
+<a href="register.html" class="register-btn">
+    Register
+</a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                <i class="fa-solid fa-location-dot"></i>
+                College Lost & Found
+            </div>
+
+            <h1>
+                Lost something on campus?
+                <span>Let's find it.</span>
+            </h1>
+
+            <p>
+                CampusFind helps students and staff report,
+                search and recover lost belongings easily.
+            </p>
+
+
+            <!-- SEARCH -->
+
+         <div class="main-search">
+
+    <i class="fa-solid fa-magnifying-glass"></i>
+
+    <input
+        type="text"
+        id="homeSearchInput"
+        placeholder="Search for an item, e.g. wallet, phone, ID card..."
+    >
+
+    <button id="homeSearchButton">
+        Search
+    </button>
+
+</div>
+
+
+            <!-- HERO BUTTONS -->
+
+            <div class="hero-buttons">
+
+                <a href="login.html" class="lost-btn">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    I Lost Something
+                </a>
+
+                <a href="login.html" class="found-btn">
+                    <i class="fa-solid fa-hand-holding-heart"></i>
+                    I Found Something
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- HERO RIGHT -->
+
+        <div class="hero-illustration">
+
+            <div class="illustration-card">
+
+                <div class="illustration-icon">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+
+                <h3>
+                    Lost & Found
+                </h3>
+
+                <p>
+                    Reconnect belongings with their owners.
+                </p>
+
+                <div class="mini-items">
+
+                    <div>
+                        <i class="fa-solid fa-mobile-screen"></i>
+                        Phone
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-key"></i>
+                        Keys
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-id-card"></i>
+                        ID Card
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= STATISTICS ================= -->
+
+<section class="stats">
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-clipboard-list"></i>
+
+        <div>
+            <h2 id="totalReported">0</h2>
+            <p>Items Reported</p>
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <div>
+            <h2 id="totalFound">0</h2>
+            <p>Items Found</p>
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-circle-check"></i>
+
+        <div>
+            <h2 id="totalRecovered">0</h2>
+            <p>Items Recovered</p>
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-users"></i>
+
+        <div>
+            <h2 id="totalUsers">0</h2>
+            <p>Campus Users</p>
+        </div>
+
+    </div>
+
+</section>
+
+    <!-- ================= RECENT ITEMS ================= -->
+
+    <section class="recent-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <p class="section-label">
+                    RECENT REPORTS
+                </p>
+
+                <h2>
+                    Recently Lost & Found
+                </h2>
+
+            </div>
+
+            <a href="items.html">
+                View All <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+
+       <div class="item-grid" id="itemsContainer">
+    <!-- Items will be loaded dynamically from the database -->
+</div>
+
+    </section>
+
+
+    <!-- ================= HOW IT WORKS ================= -->
+
+    <section class="how-section" id="how-it-works">
+
+        <div class="section-heading center">
+
+            <p class="section-label">
+                SIMPLE & EASY
+            </p>
+
+            <h2>
+                How CampusFind Works
+            </h2>
+
+            <p>
+                Finding or returning an item takes just a few simple steps.
+            </p>
+
+        </div>
+
+
+        <div class="steps">
+
+
+            <div class="step">
+
+                <div class="step-icon">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <span>1</span>
+                </div>
+
+                <h3>
+                    Report
+                </h3>
+
+                <p>
+                    Report an item you have lost or found
+                    on campus.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span>2</span>
+                </div>
+
+                <h3>
+                    Search
+                </h3>
+
+                <p>
+                    Search through reports using keywords,
+                    categories and locations.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-icon">
+                    <i class="fa-solid fa-comments"></i>
+                    <span>3</span>
+                </div>
+
+                <h3>
+                    Connect
+                </h3>
+
+                <p>
+                    Connect with the person who reported
+                    the matching item.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-icon">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>4</span>
+                </div>
+
+                <h3>
+                    Recover
+                </h3>
+
+                <p>
+                    Get your belongings back and mark
+                    the report as resolved.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CALL TO ACTION ================= -->
+
+    <section class="cta">
+
+        <div>
+
+            <h2>
+                Lost something? Don't worry.
+            </h2>
+
+            <p>
+                Report it on CampusFind and give others
+                a chance to help you find it.
+            </p>
+
+        </div>
+
+        <a href="login.html">
+            Report an Item
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-logo">
+            Campus<span>Find</span>
+        </div>
+
+        <p>
+            The Lost & Found Tracker for your campus.
+        </p>
+
+        <div class="footer-links">
+
+            <a href="index.html">Home</a>
+
+            <a href="items.html">Browse Items</a>
+
+            <a href="#how-it-works">How It Works</a>
+
+            <a href="login.html">Login</a>
+
+        </div>
+
+        <div class="copyright">
+
+            © 2026 CampusFind. All rights reserved.
+
+        </div>
+
+       </footer>
+<script>
+
+document.addEventListener("DOMContentLoaded", async function () {
+
+    const container = document.getElementById("itemsContainer");
+
+    if (!container) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch("/api/recent-items");
+
+        if (!response.ok) {
+            throw new Error("Failed to load recent items");
+        }
+
+        const items = await response.json();
+
+        container.innerHTML = "";
+
+        if (items.length === 0) {
+
+            container.innerHTML = `
+                <p>No lost or found items reported yet.</p>
+            `;
+
+            return;
+        }
+
+        items.forEach(item => {
+
+            const card = document.createElement("div");
+
+            card.className = "item-card";
+
+            card.innerHTML = `
+
+                <div class="item-image">
+
+                    ${
+                        item.image
+                        ? `<img src="${item.image}" alt="${item.item_name}">`
+                        : `<i class="fa-solid fa-box"></i>`
+                    }
+
+                </div>
+
+                <div class="item-details">
+
+                    <span class="status ${item.report_type}">
+                        ${item.report_type.toUpperCase()}
+                    </span>
+
+                    <h3>
+                        ${item.item_name}
+                    </h3>
+
+                    <p>
+                        <i class="fa-solid fa-location-dot"></i>
+                        ${item.location}
+                    </p>
+
+                    <p>
+                        <i class="fa-regular fa-calendar"></i>
+                        ${new Date(item.report_date).toLocaleDateString()}
+                    </p>
+
+                </div>
+
+            `;
+
+            container.appendChild(card);
+
+        });
+
+    } catch (error) {
+
+        console.error("RECENT ITEMS ERROR:", error);
+
+        container.innerHTML = `
+            <p>Unable to load recent reports.</p>
+        `;
+
+    }
+
+});
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const searchInput = document.getElementById("homeSearchInput");
+    const searchButton = document.getElementById("homeSearchButton");
+
+    if (!searchInput || !searchButton) {
+        return;
+    }
+
+    searchButton.addEventListener("click", function () {
+
+        const searchText = searchInput.value.trim();
+
+        if (searchText === "") {
+            alert("Please enter an item to search.");
+            return;
+        }
+
+        window.location.href =
+            "items.html?search=" + encodeURIComponent(searchText);
+
+    });
+
+    searchInput.addEventListener("keypress", function (event) {
+
+        if (event.key === "Enter") {
+            searchButton.click();
+        }
+
+    });
+
+});
+// ================================
+// LOAD HOMEPAGE STATISTICS
+// ================================
+
+document.addEventListener("DOMContentLoaded", async function () {
+
+    try {
+
+        const [lostResponse, foundResponse] = await Promise.all([
+            fetch("/api/lost-items"),
+            fetch("/api/found-items")
+        ]);
+
+        const lostItems = await lostResponse.json();
+        const foundItems = await foundResponse.json();
+
+        // Items Reported = Lost + Found
+        document.getElementById("totalReported").textContent =
+            lostItems.length + foundItems.length;
+
+        // Items Found
+        document.getElementById("totalFound").textContent =
+            foundItems.length;
+
+        // Items Recovered
+       const recoveredLost = lostItems.filter(
+    item => String(item.status).toUpperCase() === "RECOVERED"
+).length;
+
+const recoveredFound = foundItems.filter(
+    item => String(item.status).toUpperCase() === "RECOVERED"
+).length;
+
+        document.getElementById("totalRecovered").textContent =
+            recoveredLost + recoveredFound;
+
+      // Campus Users
+const usersResponse = await fetch("/api/total-users");
+
+if (usersResponse.ok) {
+    const usersData = await usersResponse.json();
+
+    document.getElementById("totalUsers").textContent =
+        usersData.totalUsers;
+}
+    } catch (error) {
+
+        console.error("STATISTICS ERROR:", error);
+
+    }
+
+});
+
+</script>
+
+<script src="js/account.js"></script>
+
+</body>
+</html>

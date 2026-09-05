@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | CampusFind</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .dashboard-page {
+            min-height: 100vh;
+            background: #f5f8ff;
+        }
+
+        .dashboard-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 50px 0;
+        }
+
+        .welcome-section {
+            margin-bottom: 35px;
+        }
+
+        .welcome-section h1 {
+            color: #172033;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .welcome-section p {
+            color: #667085;
+            font-size: 16px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .dashboard-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px 25px;
+            border: 1px solid #e8eef8;
+            box-shadow: 0 8px 25px rgba(25, 70, 140, 0.08);
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(25, 70, 140, 0.12);
+        }
+
+        .dashboard-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 14px;
+            background: #eef2ff;
+            color: #4f46e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-card h3 {
+            color: #172033;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .dashboard-card p {
+            color: #667085;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .dashboard-section {
+            margin-top: 45px;
+        }
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.stat-card {
+    background: white;
+    border: 1px solid #e8eef8;
+    border-radius: 16px;
+    padding: 25px;
+
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(25, 70, 140, 0.08);
+}
+
+.stat-icon {
+    width: 55px;
+    height: 55px;
+
+    border-radius: 14px;
+
+    background: #eef2ff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+}
+
+.stat-card h3 {
+    margin: 0 0 5px;
+    font-size: 28px;
+    color: #172033;
+}
+
+.stat-card p {
+    margin: 0;
+    color: #667085;
+    font-size: 14px;
+}
+
+@media (max-width: 700px) {
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+        .dashboard-section h2 {
+            color: #172033;
+            margin-bottom: 20px;
+        }
+
+        .quick-actions {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid #e8eef8;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .action-button {
+            padding: 13px 20px;
+            border-radius: 9px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .primary-action {
+            background: #4f46e5;
+            color: white;
+        }
+
+        .secondary-action {
+            background: #eef2ff;
+            color: #4f46e5;
+        }
+
+        @media (max-width: 900px) {
+            .dashboard-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .dashboard-container {
+                width: 90%;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome-section h1 {
+                font-size: 28px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .action-button {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body class="dashboard-page">
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            Campus<span>Find</span>
+        </div>
+
+        <nav class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="items.html">
+                Browse Items
+            </a>
+
+            <a href="dashboard.html" class="active">
+                Dashboard
+            </a>
+
+            <a href="login.html">
+                Logout
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- DASHBOARD -->
+
+    <main class="dashboard-container">
+
+        <section class="welcome-section">
+
+            <h1>
+                Welcome to CampusFind 👋
+            </h1>
+
+            <p>
+                Find lost belongings, report found items,
+                and help reconnect items with their owners.
+            </p>
+
+        </section>
+
+<!-- LIVE STATISTICS -->
+
+<section class="dashboard-section">
+
+    <h2>
+        CampusFind Statistics
+    </h2>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🔍
+            </div>
+
+            <div>
+                <h3 id="lostCount">0</h3>
+                <p>Lost Items</p>
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🎒
+            </div>
+
+            <div>
+                <h3 id="foundCount">0</h3>
+                <p>Found Items</p>
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📋
+            </div>
+
+            <div>
+                <h3 id="reportCount">0</h3>
+                <p>My Reports</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+</main>
+
+</body>
+</html>
+        <!-- DASHBOARD CARDS -->
+
+        <section class="dashboard-grid">
+
+            <a href="items.html" class="dashboard-card">
+
+                <div class="dashboard-icon">
+                    🔍
+                </div>
+
+                <h3>
+                    Browse Items
+                </h3>
+
+                <p>
+                    Search and browse lost and found
+                    items reported on campus.
+                </p>
+
+            </a>
+
+
+            <a href="report-lost.html" class="dashboard-card">
+
+                <div class="dashboard-icon">
+                    📱
+                </div>
+
+                <h3>
+                    Report Lost Item
+                </h3>
+
+                <p>
+                    Report something you lost
+                    on campus.
+                </p>
+
+            </a>
+
+
+            <a href="report-found.html" class="dashboard-card">
+
+                <div class="dashboard-icon">
+                    🎒
+                </div>
+
+                <h3>
+                    Report Found Item
+                </h3>
+
+                <p>
+                    Help someone by reporting
+                    an item you found.
+                </p>
+
+            </a>
+
+
+           <a href="my-reports.html" class="dashboard-card">
+
+    <div class="dashboard-icon">
+        📋
+    </div>
+
+    <h3>
+        My Reports
+    </h3>
+
+    <p>
+        View the lost and found items
+        you have reported.
+    </p>
+
+</a>
+
+</section>
+<script>
+
+async function loadStatistics() {
+
+    try {
+
+        // Get all lost items
+        const lostResponse = await fetch("/api/lost-items");
+        const lostItems = await lostResponse.json();
+
+        // Get all found items
+        const foundResponse = await fetch("/api/found-items");
+        const foundItems = await foundResponse.json();
+
+        // Get user's reports
+        const reportsResponse = await fetch("/api/my-reports");
+
+        let myReports = [];
+
+        if (reportsResponse.ok) {
+            myReports = await reportsResponse.json();
+        }
+
+        // Update statistics
+        document.getElementById("lostCount").textContent =
+            lostItems.length;
+
+        document.getElementById("foundCount").textContent =
+            foundItems.length;
+
+        document.getElementById("reportCount").textContent =
+            myReports.length;
+
+    } catch (error) {
+
+        console.error("Statistics loading error:", error);
+
+    }
+
+}
+
+loadStatistics();
+
+</script>
+
+</body>
+</html>
