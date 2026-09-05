@@ -6,7 +6,7 @@ const session = require("express-session");
 const multer = require("multer");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const uploadDir = path.join(__dirname, "public", "uploads");
 
@@ -62,7 +62,7 @@ const upload = multer({
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(session({
-    secret: "campusfind-secret-key",
+    secret: process.env.SESSION_SECRET || "development-secret",
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -80,10 +80,11 @@ console.log("EXPRESS SERVER SETUP COMPLETE");
 // ================================
 
 const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "January21",
-    database: "campusfind"
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT || 3306
 });
 
 db.connect((err) => {
@@ -129,8 +130,7 @@ app.get("/", (req, res) => {
 app.post("/register", (req, res) => {
 
     const { name, email, accessPassword } = req.body;
-const COLLEGE_ACCESS_PASSWORD = "BKBNC@2026";
-
+const COLLEGE_ACCESS_PASSWORD = process.env.COLLEGE_ACCESS_PASSWORD;
 if (accessPassword !== COLLEGE_ACCESS_PASSWORD) {
     return res.send(`
         <h1>Access Denied</h1>
@@ -271,7 +271,7 @@ app.post("/login", (req, res) => {
 
    const { email, accessPassword } = req.body;
 
-   const COLLEGE_ACCESS_PASSWORD = "BKBNC@2026";
+  const COLLEGE_ACCESS_PASSWORD = process.env.COLLEGE_ACCESS_PASSWORD;
 
 if (accessPassword !== COLLEGE_ACCESS_PASSWORD) {
     return res.send(`
